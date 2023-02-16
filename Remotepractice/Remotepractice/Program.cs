@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using NZWalks.API.Data;
-using NZWalks.API.Repositories;
+using Remotepractice.Data;
+using Remotepractice.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,12 +10,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<NZWalksDbContext>(options =>
+builder.Services.AddTransient(typeof(IRemoteRepository<>),typeof(RemoteRepository<>));
+builder.Services.AddDbContext<RemotePracticeDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("NZWalk"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("shoppy"));
 });
-builder.Services.AddScoped<IRegionRepository, RegionRepository>();
-builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
 
 var app = builder.Build();
 
@@ -29,6 +29,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
 app.MapControllers();
 
 app.Run();
