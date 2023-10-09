@@ -1,0 +1,9 @@
+{
+	"name": "githubdatafactorydatasets",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "ac8e8490-609a-46b5-b8ca-2c2701d9424a",
+		"tenantId": "76a2ae5a-9f00-4f6b-95ed-5d33d77c4d61"
+	}
+}
